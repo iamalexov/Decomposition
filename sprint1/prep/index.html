@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <h1 id="quote">Loading...</h1>
+  <p id="author"></p>
+
+  <button id="btn">
+    New Quote
+  </button>
+
+  <script>
+    const quote = document.getElementById("quote");
+    const author = document.getElementById("author");
+    const btn = document.getElementById("btn");
+
+    async function loadQuote() {
+      const response = await fetch("http://127.0.0.1:3000");
+
+      const data = await response.json();
+
+      quote.textContent = data.quote;
+      author.textContent = data.author;
+    }
+
+    btn.addEventListener("click", loadQuote);
+
+    loadQuote();
+  </script>
+</body>
+</html>
